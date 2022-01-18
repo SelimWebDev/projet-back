@@ -8,6 +8,7 @@ export class ArrondissementController {
   @Get()
   async getAllArrondissements() {
     const products = await this.arrondissementService.getAll();
+    console.log("ok")
     return products;
   }
 }
