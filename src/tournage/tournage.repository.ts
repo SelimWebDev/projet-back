@@ -15,8 +15,6 @@ export class TournageRepository {
   }
 
   async findByCode(code: string): Promise<Tournage[]> {
-    const result = this.tournageModel.find({ properties: { ardt_lieu: code } });
-    console.log(result);
-    return result;
+    return this.tournageModel.find({ 'properties.ardt_lieu': code }).exec();
   }
 }
