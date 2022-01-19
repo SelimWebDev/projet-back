@@ -8,14 +8,16 @@ export class TournageController {
   @Get()
   async getAllTournages() {
     const tournages = await this.tournageService.getAll();
+    console.log('getAllControlleur');
     return tournages;
   }
 
-  @Get(':id')
+  @Get('/arrondissement:id')
   async getTournagesByArrond(@Param('id') arrondissementCode: string) {
     const tournages = await this.tournageService.getTournagesByCode(
       arrondissementCode,
     );
+    console.log('getByID controlleur');
     return tournages;
   }
 }

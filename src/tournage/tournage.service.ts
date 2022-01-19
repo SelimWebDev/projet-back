@@ -14,8 +14,6 @@ export class TournageService {
       //log nest
       throw new Error('Erreur');
     }
-
-    console.log(tournages);
     return tournages;
   }
 
@@ -26,7 +24,6 @@ export class TournageService {
     } catch (error) {
       throw new Error('Erreur');
     }
-    console.log(tournages);
     return tournages;
   }
 }
