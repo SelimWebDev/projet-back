@@ -11,9 +11,8 @@ export class ArrondissementController {
   
     @Get() 
     async getAllArrondissements() {
-      const products = await this.arrondissementService.getAll(); 
-      return products;
-    }
-    
+      const arrondissements = await this.arrondissementService.getAll(); 
+      return arrondissements;
+    }    
 }
   
