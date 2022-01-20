@@ -11,14 +11,7 @@ export class ArrondissementService {
  
   // service pour avoir tous les arrondissements
   async getAll() {
-    let arrondissements
-    try {
-      arrondissements = await this.arrondissementRepository.findAll()
-    } catch(error) {
-      //log nest
-      throw new Error('Erreur');
-    }
-    
+    const arrondissements = await this.arrondissementRepository.findAll()
     console.log(arrondissements);
     return arrondissements
   }

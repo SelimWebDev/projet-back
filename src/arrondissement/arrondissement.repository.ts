@@ -1,6 +1,5 @@
-/* eslint-disable prettier/prettier */
 import { Arrondissement } from './arrondissement.model';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
@@ -12,6 +11,11 @@ export class ArrondissementRepository {
   ) {}
 
   async findAll(): Promise<Arrondissement[]> {
-    return this.arrondissementModel.find().exec();
+    const arrondissements = this.arrondissementModel
+      .find({ _id: 'hbnjkfd' })
+      .exec();
+    if (!arrondissements) {
+      throw new NotFoundException();
+    } else return arrondissements;
   }
 }
