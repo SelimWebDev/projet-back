@@ -16,7 +16,7 @@ describe('ArrondissementController', () => {
 
   describe('findAll', () => {
     it('should return an array of arrondissements', async () => {
-      const result = ['test'];
+      const result = [];
       jest
         .spyOn(arrondissementService, 'getAll')
         .mockImplementation(async () => result);

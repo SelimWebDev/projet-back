@@ -11,9 +11,7 @@ export class ArrondissementRepository {
   ) {}
 
   async findAll(): Promise<Arrondissement[]> {
-    const arrondissements = this.arrondissementModel
-      .find({ _id: 'hbnjkfd' })
-      .exec();
+    const arrondissements = this.arrondissementModel.find().exec();
     if (!arrondissements) {
       throw new NotFoundException();
     } else return arrondissements;
