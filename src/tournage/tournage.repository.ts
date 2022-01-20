@@ -1,5 +1,5 @@
 import { Tournage } from './tournage.model';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
@@ -11,10 +11,19 @@ export class TournageRepository {
   ) {}
 
   async findAll(): Promise<Tournage[]> {
-    return this.tournageModel.find().exec();
+    const tournages = await this.tournageModel.find().exec();
+    if (!tournages) {
+      throw new NotFoundException();
+    } else return tournages;
   }
 
   async findByCode(code: string): Promise<Tournage[]> {
-    return this.tournageModel.find({ 'properties.ardt_lieu': code }).exec();
+    const tournages = await this.tournageModel
+      .find({ 'properties.ardt_lieu': code })
+      .exec();
+    console.log(tournages.length);
+    if (!tournages || tournages.length == 0) {
+      throw new NotFoundException();
+    } else return tournages;
   }
 }
