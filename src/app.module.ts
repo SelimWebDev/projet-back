@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://masterp6:macaron2022@cluster0.ck76z.mongodb.net/mapData?retryWrites=true&w=majority',
-    ),
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(process.env.MONGODB_LINK),
   ],
   controllers: [AppController],
   providers: [AppService],
