@@ -14,7 +14,7 @@ describe('ArrondissementController', () => {
 
   describe('findAll', () => {
     it('should return an array of tournage', async () => {
-      const result = ['test'];
+      const result = [];
       jest
         .spyOn(tournageService, 'getAll')
         .mockImplementation(async () => result);
