@@ -8,6 +8,8 @@ import { TournageModule } from './tournage/tournage.module';
 
 @Module({
   imports: [
+    ArrondissementModule,
+    TournageModule,
     ConfigModule.forRoot(),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
