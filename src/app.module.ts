@@ -7,6 +7,7 @@ import { ArrondissementModule } from './arrondissement/arrondissement.module';
 
 @Module({
   imports: [
+    ArrondissementModule,
     ConfigModule.forRoot(),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
