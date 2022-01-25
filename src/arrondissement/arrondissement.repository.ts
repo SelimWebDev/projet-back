@@ -1,5 +1,5 @@
 import { Arrondissement } from './arrondissement.model';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
@@ -11,9 +11,12 @@ export class ArrondissementRepository {
   ) {}
 
   async findAll(): Promise<Arrondissement[]> {
-    const arrondissements = this.arrondissementModel.find().exec();
-    if (!arrondissements) {
-      throw new NotFoundException();
-    } else return arrondissements;
+    //try catch gestion erreur mongoose
+    try {
+      const arrondissements = await this.arrondissementModel.find().exec();
+      return arrondissements;
+    } catch (error) {
+      return error;
+    }
   }
 }

@@ -19,7 +19,7 @@ export const ArrondissementSchema = new mongoose.Schema({
   },
 });
 
-export interface Arrondissement extends mongoose.Document {
+export class Arrondissement extends mongoose.Document {
   id: string;
   type: string;
   geometry: {

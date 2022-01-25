@@ -5,7 +5,7 @@ import { AppModule } from './../src/app.module';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
-
+  const nbOfAllArrondissement = 20;
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
@@ -15,8 +15,27 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer()).get('/arrondissements').expect(200);
+  describe('GET /arrondissements', function () {
+    it('responds with array of geojson arrondissements', async function () {
+      const response = await request(app.getHttpServer()).get(
+        '/arrondissements',
+      );
+      expect(response.headers['content-type']).toMatch(/json/);
+      expect(response.status).toEqual(200);
+      expect(response.body.length).toEqual(nbOfAllArrondissement);
+    });
+  });
+
+  //récupérer le paramètre de la requète
+  describe('GET /wrongRoute', function () {
+    it('responds with an error 404', async function () {
+      const response = await request(app.getHttpServer()).get('/wrongRoute');
+      expect(response.headers['content-type']).toMatch(/json/);
+      expect(response.status).toEqual(404);
+      expect(response.body.error).toEqual('Not Found');
+      expect(response.body.message).toEqual('Cannot GET /wrongRoute');
+      console.log(request);
+    });
   });
 
   afterAll(async () => {
