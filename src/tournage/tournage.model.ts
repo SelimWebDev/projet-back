@@ -23,7 +23,7 @@ export const TournageSchema = new mongoose.Schema({
   },
 });
 
-export interface Tournage extends mongoose.Document {
+export class Tournage extends mongoose.Document {
   id: string;
   type: string;
   geometry: {

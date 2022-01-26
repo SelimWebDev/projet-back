@@ -21,7 +21,6 @@ export class TournageRepository {
     const tournages = await this.tournageModel
       .find({ 'properties.ardt_lieu': code })
       .exec();
-    console.log(tournages.length);
     if (!tournages || tournages.length == 0) {
       throw new NotFoundException();
     } else return tournages;
