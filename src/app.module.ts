@@ -2,9 +2,11 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ArrondissementModule } from './arrondissement/arrondissement.module';
+import { TournageModule } from './tournage/tournage.module';
 
 @Module({
   imports: [
+    TournageModule,
     ArrondissementModule,
     ConfigModule.forRoot(),
     MongooseModule.forRootAsync({
