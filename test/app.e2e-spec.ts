@@ -17,9 +17,12 @@ describe('AppController (e2e)', () => {
 
   describe('GET /arrondissements', function () {
     it('responds with array of geojson arrondissements', async function () {
+      //test
       const response = await request(app.getHttpServer()).get(
         '/arrondissements',
       );
+
+      //assert
       expect(response.headers['content-type']).toMatch(/json/);
       expect(response.status).toEqual(200);
       expect(response.body.length).toEqual(nbOfAllArrondissement);

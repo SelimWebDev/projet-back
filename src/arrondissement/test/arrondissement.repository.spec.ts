@@ -6,7 +6,7 @@ import { getModelToken } from '@nestjs/mongoose';
 describe('ArrondissementRepository', () => {
   let arrondissementRepository: ArrondissementRepository;
   const arrondissementModel = {
-    findAll: jest.fn(),
+    find: jest.fn(),
   };
 
   beforeEach(async () => {
@@ -35,13 +35,15 @@ describe('ArrondissementRepository', () => {
     //test si arrondissementRepository est appelé et si la valeur reçu est "ok"
     test('then it should call the arrondissementModel and return ok', async () => {
       //Arrange
-      arrondissementModel.findAll = jest.fn().mockReturnValue('ok');
+      arrondissementModel.find = jest.fn().mockImplementation(() => ({
+        exec: jest.fn().mockReturnValue('ok'),
+      }));
 
       // Test
       arrondissementResult = await arrondissementRepository.findAll();
 
       //Assert
-      //expect(arrondissementModel.findAll).toBeCalled();
+      expect(arrondissementModel.find).toBeCalled();
       expect(arrondissementResult).toEqual('ok');
     });
   });
