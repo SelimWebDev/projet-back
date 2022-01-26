@@ -28,7 +28,7 @@ export class Tournage extends mongoose.Document {
   type: string;
   geometry: {
     type: string;
-    coordinates: [[[number]]];
+    coordinates: [number];
   };
   properties: {
     annee_tournage: string;
