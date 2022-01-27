@@ -7,7 +7,7 @@ describe('AppController (e2e)', () => {
   let app: INestApplication;
   const nbOfAllArrondissement = 20;
   const nbOfAllTournages = 8919;
-  const nbOfTournagesFiltered = 248;
+  const nbOfTournagesFiltered = 251;
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
@@ -43,12 +43,11 @@ describe('AppController (e2e)', () => {
 
     it('responds with array of tournage of 75015 arrondissement', async function () {
       //test
-      const response = await request(app.getHttpServer()).get(
-        '/tournages/75015',
-      );
+      const response = await request(app.getHttpServer()).get('/tournages/15');
       //assert
       expect(response.headers['content-type']).toMatch(/json/);
       expect(response.status).toEqual(200);
+      console.log(response.body.length);
       expect(response.body.length).toEqual(nbOfTournagesFiltered);
     });
   });
