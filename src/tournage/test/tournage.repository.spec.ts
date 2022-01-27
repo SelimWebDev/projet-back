@@ -2,11 +2,15 @@ import { Test } from '@nestjs/testing';
 import { TournageRepository } from '../tournage.repository';
 import { Tournage } from '../tournage.model';
 import { getModelToken } from '@nestjs/mongoose';
+import { Arrondissement } from '../../arrondissement/arrondissement.model';
 
 describe('TournageRepository', () => {
   let tournageRepository: TournageRepository;
   const tournageModel = {
     find: jest.fn(),
+  };
+  const arrondissementModel = {
+    findOne: jest.fn(),
   };
 
   beforeEach(async () => {
@@ -18,6 +22,10 @@ describe('TournageRepository', () => {
         {
           provide: getModelToken(Tournage.name),
           useValue: tournageModel,
+        },
+        {
+          provide: getModelToken(Arrondissement.name),
+          useValue: arrondissementModel,
         },
       ],
     }).compile();
@@ -53,11 +61,13 @@ describe('TournageRepository', () => {
       tournageModel.find = jest.fn().mockImplementation(() => ({
         exec: jest.fn().mockReturnValue('ok'),
       }));
+      arrondissementModel.findOne = jest.fn().mockReturnValue('exemple');
 
       // Test
       tournageResult = await tournageRepository.findByCode('1');
 
       //Assert
+      expect(arrondissementModel.findOne).toBeCalled();
       expect(tournageModel.find).toBeCalled();
       expect(tournageResult).toEqual('ok');
     });
