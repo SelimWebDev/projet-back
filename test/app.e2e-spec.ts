@@ -44,6 +44,7 @@ describe('AppController (e2e)', () => {
     it('responds with array of tournage of 75015 arrondissement', async function () {
       //test
       const response = await request(app.getHttpServer()).get('/tournages/15');
+      jest.setTimeout(9000);
       //assert
       expect(response.headers['content-type']).toMatch(/json/);
       expect(response.status).toEqual(200);
