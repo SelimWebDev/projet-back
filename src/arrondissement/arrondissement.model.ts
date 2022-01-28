@@ -24,7 +24,7 @@ export class Arrondissement extends mongoose.Document {
   type: string;
   geometry: {
     type: string;
-    coordinates: [[[number]]];
+    coordinates: number[][][];
   };
   properties: {
     n_sq_co: number;
