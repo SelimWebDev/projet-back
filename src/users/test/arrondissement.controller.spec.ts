@@ -1,7 +1,7 @@
-import { ArrondissementController } from '../arrondissement.controller';
-import { ArrondissementService } from '../arrondissement.service';
+import { ArrondissementController } from '../users.controller';
+import { ArrondissementService } from '../users.service';
 import { Test } from '@nestjs/testing';
-import { Arrondissement } from '../arrondissement.model';
+import { Arrondissement } from '../users.model';
 
 describe('ArrondissementController', () => {
   let arrondissementController: ArrondissementController;

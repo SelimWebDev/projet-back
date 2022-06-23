@@ -1,21 +1,21 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { MongooseModule } from '@nestjs/mongoose';
-import { ArrondissementModule } from './arrondissement/arrondissement.module';
-import { TournageModule } from './tournage/tournage.module';
+import { ConfigModule /*, ConfigService*/ } from '@nestjs/config';
+//import { MongooseModule } from '@nestjs/mongoose';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    TournageModule,
-    ArrondissementModule,
+    UsersModule,
     ConfigModule.forRoot(),
-    MongooseModule.forRootAsync({
+    AuthModule,
+    /*MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.get<string>('MONGODB_LINK'),
       }),
       inject: [ConfigService],
-    }),
+    }),*/
   ],
   controllers: [],
   providers: [],

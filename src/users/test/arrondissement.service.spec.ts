@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
-import { ArrondissementService } from '../arrondissement.service';
-import { ArrondissementRepository } from '../arrondissement.repository';
-import { Arrondissement } from '../arrondissement.model';
+import { ArrondissementService } from '../users.service';
+import { ArrondissementRepository } from '../users.repository';
+import { Arrondissement } from '../users.model';
 
 describe('ArrondissementService', () => {
   let arrondissementService: ArrondissementService;

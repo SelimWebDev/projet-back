@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
-import { ArrondissementRepository } from '../arrondissement.repository';
-import { Arrondissement } from '../arrondissement.model';
+import { ArrondissementRepository } from '../users.repository';
+import { Arrondissement } from '../users.model';
 import { getModelToken } from '@nestjs/mongoose';
 
 describe('ArrondissementRepository', () => {
