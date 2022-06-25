@@ -1,4 +1,4 @@
-import { User } from './users.model';
+import { CreateUserDTO, User } from './users.model';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -6,7 +6,7 @@ import { Model } from 'mongoose';
 @Injectable()
 export class UsersRepository {
   constructor(
-    @InjectModel('Arrondissement')
+    @InjectModel('User')
     public readonly userModel: Model<User>,
   ) {}
 
@@ -19,11 +19,12 @@ export class UsersRepository {
     }
   }
 
-  /*async createOne(user: User): Promise<User> {
+  async addToDb(user: CreateUserDTO): Promise<User> {
     try {
-      const user = await this.userModel.create(user).exec();
+      const newUser = await this.userModel.create(user);
+      return newUser;
     } catch (error) {
       return error;
     }
-  }*/
+  }
 }

@@ -1,22 +1,14 @@
-/*import { Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserController } from './users.controller';
-import { UserService } from './users.service';
 import { UserSchema } from './users.model';
-import { UserRepository } from './users.repository';
-
-@Module({
-  imports: [MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])],
-  controllers: [UserController],
-  providers: [UserService, UserRepository],
-})
-export class ArrondissementModule {}*/
-
-import { Module } from '@nestjs/common';
+import { UsersRepository } from './users.repository';
 import { UsersService } from './users.service';
 
 @Module({
-  providers: [UsersService],
+  imports: [MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])],
+  providers: [UsersService, UsersRepository],
   exports: [UsersService],
+  controllers: [UserController],
 })
 export class UsersModule {}
